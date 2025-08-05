@@ -3,9 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tejas Kshirsagar - SQL Developer & Database Specialist</title>
+    <title>Tejas Kshirsagar - SQL Developer & Database Architect</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #ffffff;
+            --secondary-color: #f8fafc;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f1f5f9;
+            --border-color: #e2e8f0;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --purple-color: #8b5cf6;
+            --pink-color: #ec4899;
+            --teal-color: #06b6d4;
+            --orange-color: #f97316;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --gradient-6: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,23 +40,38 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-color);
+            color: var(--text-primary);
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secondary-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 4px;
         }
 
         /* Navigation */
-        nav {
+        .navbar {
             position: fixed;
             top: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
             z-index: 1000;
             padding: 1rem 0;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px var(--shadow);
         }
 
         .nav-container {
@@ -42,62 +84,109 @@
         }
 
         .logo {
+            font-family: 'JetBrains Mono', monospace;
             font-size: 1.5rem;
-            font-weight: bold;
-            color: #2c3e50;
+            font-weight: 600;
+            color: var(--accent-color);
         }
 
-        .nav-links {
+        .nav-menu {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
 
-        .nav-links a {
+        .nav-menu a {
+            color: var(--text-secondary);
             text-decoration: none;
-            color: #2c3e50;
             font-weight: 500;
-            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .nav-links a:hover {
-            color: #3498db;
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--accent-color);
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Section Container */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 2rem;
+            position: relative;
+        }
+
+        .section-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
         }
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 120px 2rem 80px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             text-align: center;
-            color: white;
-            max-width: 1200px;
-            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23e5e7eb" stroke-width="0.5" opacity="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+            font-size: 4rem;
             font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .hero .tagline {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
         }
 
-        .hero-description {
-            font-size: 1.1rem;
+        .hero .description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto 2rem;
-            opacity: 0.9;
+            line-height: 1.7;
         }
 
-        .cta-buttons {
+        .hero-buttons {
             display: flex;
             gap: 1rem;
             justify-content: center;
@@ -105,276 +194,559 @@
         }
 
         .btn {
-            padding: 12px 30px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 50px;
+            border-radius: 8px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .btn-primary {
-            background: white;
-            color: #2c3e50;
+            background: var(--accent-color);
+            color: var(--primary-color);
         }
 
         .btn-primary:hover {
+            background: var(--accent-hover);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
         }
 
         .btn-secondary {
             background: transparent;
-            color: white;
-            border: 2px solid white;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
         }
 
         .btn-secondary:hover {
-            background: white;
-            color: #2c3e50;
+            background: var(--accent-color);
+            color: var(--primary-color);
             transform: translateY(-2px);
         }
 
-        /* Main Content */
-        .main-content {
-            background: white;
-            border-radius: 20px 20px 0 0;
-            position: relative;
-            z-index: 10;
-            margin-top: 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            width: 100%;
-        }
-
-        .section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem 0;
-            box-sizing: border-box;
-        }
-
-        .section h2 {
-            font-size: 2.5rem;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
+        /* Section Headers */
+        .section-header {
             text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
         }
 
         .section-subtitle {
-            text-align: center;
-            color: #7f8c8d;
-            margin-bottom: 2rem;
             font-size: 1.1rem;
+            color: var(--text-muted);
             max-width: 600px;
+            margin: 0 auto;
         }
 
-        /* Skills Grid */
+        /* About Section */
+        .about {
+            background: var(--gradient-6);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
+            z-index: 1;
+        }
+
+        .about-placeholder {
+            width: 100%;
+            height: 400px;
+            background: var(--gradient-3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-placeholder i {
+            font-size: 4rem;
+            color: white;
+        }
+
+        .about-text {
+            space-y: 1.5rem;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-item:nth-child(1) {
+            border-top: 3px solid var(--teal-color);
+        }
+
+        .stat-item:nth-child(2) {
+            border-top: 3px solid var(--purple-color);
+        }
+
+        .stat-item:nth-child(3) {
+            border-top: 3px solid var(--pink-color);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-item:nth-child(1) .stat-number {
+            color: var(--teal-color);
+        }
+
+        .stat-item:nth-child(2) .stat-number {
+            color: var(--purple-color);
+        }
+
+        .stat-item:nth-child(3) .stat-number {
+            color: var(--pink-color);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: var(--primary-color);
+        }
+
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
-            margin-top: 1rem;
-            width: 100%;
-            max-width: 1000px;
         }
 
         .skill-card {
-            background: #f8f9fa;
+            background: var(--bg-card);
             padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--success-color));
         }
 
         .skill-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            background: var(--bg-card-hover);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .skill-card i {
-            font-size: 3rem;
-            color: #3498db;
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
             margin-bottom: 1rem;
         }
 
-        .skill-card h3 {
-            color: #2c3e50;
+        .skill-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .skill-description {
+            color: var(--text-secondary);
             margin-bottom: 1rem;
         }
 
-        /* Projects Grid */
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--accent-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--secondary-color);
+        }
+
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1rem;
-            width: 100%;
-            max-width: 1000px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
         }
 
         .project-card {
-            background: white;
-            border-radius: 15px;
+            background: var(--bg-card);
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
 
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
         }
 
         .project-header {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
             padding: 1.5rem;
+            background: linear-gradient(135deg, var(--accent-color), var(--success-color));
+            color: var(--primary-color);
         }
 
-        .project-header h3 {
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
         .project-tech {
-            background: rgba(255,255,255,0.2);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(15, 23, 42, 0.2);
             padding: 0.3rem 0.8rem;
             border-radius: 15px;
             font-size: 0.8rem;
-            display: inline-block;
-            margin: 0.2rem;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .project-body {
             padding: 1.5rem;
         }
 
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
         .project-features {
             list-style: none;
-            margin: 1rem 0;
+            margin-bottom: 1.5rem;
         }
 
         .project-features li {
-            padding: 0.3rem 0;
-            color: #555;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
         }
 
-        .project-features li:before {
-            content: "✓ ";
-            color: #27ae60;
+        .project-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
             font-weight: bold;
         }
 
-        /* Certifications */
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        .project-links {
+            display: flex;
             gap: 1rem;
-            margin-top: 1rem;
-            width: 100%;
+        }
+
+        .project-link {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-link:hover {
+            background: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        /* Experience Section */
+        .experience {
+            background: var(--primary-color);
+        }
+
+        .timeline {
+            position: relative;
             max-width: 800px;
+            margin: 0 auto;
         }
 
-        .cert-card {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border-left: 5px solid #3498db;
-            transition: transform 0.3s ease;
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-color);
+            transform: translateX(-50%);
         }
 
-        .cert-card:hover {
-            transform: translateX(5px);
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
         }
 
-        .cert-card h3 {
-            color: #2c3e50;
+        .timeline-content {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            width: 45%;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            background: var(--bg-card-hover);
+            transform: scale(1.02);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-color);
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .timeline-date {
+            color: var(--accent-color);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
             margin-bottom: 0.5rem;
         }
 
-        .cert-year {
-            background: #3498db;
-            color: white;
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+        }
+
+        /* Certifications Section */
+        .certifications {
+            background: var(--secondary-color);
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cert-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-1);
+            border-radius: 16px 16px 0 0;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-8px);
+            background: var(--bg-card-hover);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .cert-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-issuer {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .cert-date {
+            background: var(--success-color);
+            color: var(--primary-color);
             padding: 0.3rem 0.8rem;
-            border-radius: 20px;
+            border-radius: 15px;
             font-size: 0.8rem;
+            font-weight: 600;
             display: inline-block;
         }
 
         /* Contact Section */
+        .contact {
+            background: var(--primary-color);
+        }
+
+        .contact-content {
+            text-align: center;
+        }
+
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
-            margin-top: 1rem;
-            width: 100%;
-            max-width: 800px;
+            margin-bottom: 3rem;
         }
 
         .contact-card {
-            background: #f8f9fa;
+            background: var(--bg-card);
             padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
+            text-align: center;
         }
 
         .contact-card:hover {
-            background: #3498db;
-            color: white;
+            background: var(--bg-card-hover);
             transform: translateY(-5px);
+            border-color: var(--accent-color);
         }
 
-        .contact-card i {
+        .contact-icon {
             font-size: 2.5rem;
+            color: var(--accent-color);
             margin-bottom: 1rem;
-            color: #3498db;
         }
 
-        .contact-card:hover i {
-            color: white;
+        .contact-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
         }
 
-        .contact-card a {
+        .contact-info {
+            color: var(--text-secondary);
+        }
+
+        .contact-info a {
+            color: var(--accent-color);
             text-decoration: none;
-            color: inherit;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
         }
 
         /* Footer */
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
+        .footer {
+            background: var(--secondary-color);
             padding: 2rem;
-        }
-
-        /* Mobile Menu */
-        .mobile-menu {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: #2c3e50;
-            cursor: pointer;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-links {
+            .nav-menu {
                 display: none;
             }
 
-            .mobile-menu {
+            .mobile-toggle {
                 display: block;
             }
 
@@ -382,110 +754,74 @@
                 font-size: 2.5rem;
             }
 
-            .hero .tagline {
-                font-size: 1.1rem;
+            .hero .subtitle {
+                font-size: 1.2rem;
             }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
+            .section {
+                padding: 4rem 1rem 2rem;
             }
 
-            .section h2 {
-                font-size: 2rem;
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
-            .container {
-                padding: 2rem 1rem;
+            .about-stats {
+                grid-template-columns: 1fr;
             }
+
+            .skills-grid,
+            .projects-grid,
+            .cert-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+
+            .timeline-item::after {
+                left: 20px;
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-content {
+            animation: fadeInUp 0.6s ease-out;
         }
 
         /* Smooth Scrolling */
         html {
             scroll-behavior: smooth;
         }
-
-        /* Page Sections */
-        .page-section {
-            min-height: 100vh;
-            padding-top: 80px;
-            display: flex;
-            align-items: center;
-        }
-
-        /* Experience Timeline */
-        .timeline {
-            position: relative;
-            margin: 1rem 0;
-            width: 100%;
-            max-width: 800px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: #3498db;
-        }
-
-        .timeline-item {
-            margin: 2rem 0;
-            position: relative;
-        }
-
-        .timeline-content {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            width: 45%;
-            position: relative;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content {
-            margin-left: auto;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            background: #3498db;
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 0 0 3px #3498db;
-        }
-
-        @media (max-width: 768px) {
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item::before {
-                left: 20px;
-                transform: translateX(-50%);
-            }
-
-            .timeline-content {
-                width: calc(100% - 50px);
-                margin-left: 50px !important;
-            }
-        }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">Tejas Kshirsagar</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+            <div class="logo">&lt;/TK&gt;</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
@@ -493,264 +829,447 @@
                 <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <button class="mobile-menu">
+            <button class="mobile-toggle">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <h1>Tejas Kshirsagar</h1>
-        <p class="tagline">SQL Developer | Database Specialist | .NET Professional</p>
-        <p class="hero-description">
-            Passionate about database optimization, SQL Server development, and building scalable data-driven solutions. 
-            Transitioning from .NET development to specialized database roles with expertise in performance tuning and complex query optimization.
-        </p>
-        <div class="cta-buttons">
-            <a href="#projects" class="btn btn-primary">View My Work</a>
-            <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+    <section id="home" class="section hero">
+        <div class="section-content">
+            <div class="hero-content">
+                <h1>Tejas Kshirsagar</h1>
+                <p class="subtitle">SQL Developer • Database Architect • .NET Professional</p>
+                <p class="description">
+                    Transforming complex data challenges into scalable solutions. Specialized in database optimization, 
+                    SQL Server development, and building high-performance data-driven applications.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-code"></i>
+                        View Projects
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="container">
-            <section id="about" class="section">
-                <div class="container">
-                    <h2>About Me</h2>
-                    <p class="section-subtitle">Dedicated database professional with a passion for data excellence</p>
-                    <div style="max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.1rem; line-height: 1.8;">
-                        <p>
-                            With a strong foundation in .NET development and a growing expertise in database technologies, 
-                            I specialize in SQL Server performance optimization, complex query design, and database architecture. 
-                            My experience spans from application development to database administration, giving me a unique 
-                            perspective on how to build efficient, scalable data solutions.
-                        </p>
-                        <br>
-                        <p>
-                            I'm currently seeking opportunities in SQL development and database administration roles where 
-                            I can leverage my technical skills and passion for data to drive business success through 
-                            optimized database solutions.
-                        </p>
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="section-content">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Database enthusiast with a passion for clean code and optimized performance</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="about-placeholder">
+                        <i class="fas fa-user-tie"></i>
                     </div>
                 </div>
-            </section>
-
-            <section id="skills" class="section">
-                <div class="container">
-                    <h2>Technical Skills</h2>
-                    <p class="section-subtitle">Comprehensive expertise across database and development technologies</p>
-                    <div class="skills-grid">
-                        <div class="skill-card">
-                            <i class="fas fa-database"></i>
-                            <h3>Database Technologies</h3>
-                            <p>SQL Server, MySQL, Oracle, PostgreSQL, Database Design, Normalization, ERD</p>
+                <div class="about-text">
+                    <p>
+                        With a strong foundation in .NET development and specialized expertise in database technologies, 
+                        I bridge the gap between application development and data architecture. My journey from software 
+                        development to database specialization has given me a unique perspective on building efficient, 
+                        scalable solutions.
+                    </p>
+                    <p>
+                        I specialize in SQL Server performance tuning, complex query optimization, and database design. 
+                        Currently seeking opportunities in SQL development and database administration roles where I can 
+                        leverage my technical skills to drive business success through data excellence.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">3+</span>
+                            <span class="stat-label">Years Experience</span>
                         </div>
-                        <div class="skill-card">
-                            <i class="fas fa-code"></i>
-                            <h3>SQL Expertise</h3>
-                            <p>Complex Queries, Stored Procedures, Functions, Triggers, Views, CTEs, Window Functions</p>
+                        <div class="stat-item">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Projects Completed</span>
                         </div>
-                        <div class="skill-card">
-                            <i class="fas fa-tachometer-alt"></i>
-                            <h3>Performance Optimization</h3>
-                            <p>Query Tuning, Index Optimization, Execution Plans, Performance Monitoring</p>
-                        </div>
-                        <div class="skill-card">
-                            <i class="fas fa-chart-bar"></i>
-                            <h3>Business Intelligence</h3>
-                            <p>Power BI, SSRS, SSIS, Data Analysis, ETL Processes, Data Warehousing</p>
-                        </div>
-                        <div class="skill-card">
-                            <i class="fas fa-laptop-code"></i>
-                            <h3>.NET Development</h3>
-                            <p>C#, ASP.NET, Web Forms, WPF, Entity Framework, ADO.NET</p>
-                        </div>
-                        <div class="skill-card">
-                            <i class="fas fa-tools"></i>
-                            <h3>Tools & Platforms</h3>
-                            <p>SSMS, Visual Studio, Git, Azure, AWS RDS, MongoDB, Redis</p>
+                        <div class="stat-item">
+                            <span class="stat-number">4</span>
+                            <span class="stat-label">Certifications</span>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </div>
+    </section>
 
-            <!-- Projects Section -->
-            <section id="projects" class="section">
-                <h2>Database Projects</h2>
+    <!-- Skills Section -->
+    <section id="skills" class="section skills">
+        <div class="section-content">
+            <div class="section-header">
+                <h2 class="section-title">Technical Expertise</h2>
+                <p class="section-subtitle">Comprehensive skills across database technologies and software development</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="skill-title">Database Technologies</h3>
+                    <p class="skill-description">Expert in relational database design, optimization, and administration</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SQL Server</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Oracle</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="skill-title">SQL Development</h3>
+                    <p class="skill-description">Advanced SQL programming and query optimization techniques</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">T-SQL</span>
+                        <span class="skill-tag">Stored Procedures</span>
+                        <span class="skill-tag">Functions</span>
+                        <span class="skill-tag">Triggers</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3 class="skill-title">Performance Optimization</h3>
+                    <p class="skill-description">Database tuning and performance monitoring for enterprise applications</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Query Tuning</span>
+                        <span class="skill-tag">Indexing</span>
+                        <span class="skill-tag">Execution Plans</span>
+                        <span class="skill-tag">Monitoring</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="skill-title">Business Intelligence</h3>
+                    <p class="skill-description">Data analysis, reporting, and visualization solutions</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">SSRS</span>
+                        <span class="skill-tag">SSIS</span>
+                        <span class="skill-tag">ETL</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="skill-title">.NET Development</h3>
+                    <p class="skill-description">Full-stack application development with Microsoft technologies</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">C#</span>
+                        <span class="skill-tag">ASP.NET</span>
+                        <span class="skill-tag">Entity Framework</span>
+                        <span class="skill-tag">WPF</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="skill-title">Tools & Platforms</h3>
+                    <p class="skill-description">Professional development and database management tools</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SSMS</span>
+                        <span class="skill-tag">Visual Studio</span>
+                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">Git</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="section-content">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
                 <p class="section-subtitle">Real-world applications showcasing database expertise and development skills</p>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>Enterprise Task Management System</h3>
-                            <div>
-                                <span class="project-tech">SQL Server</span>
-                                <span class="project-tech">ASP.NET</span>
-                                <span class="project-tech">C#</span>
-                            </div>
-                        </div>
-                        <div class="project-body">
-                            <p>Comprehensive task management solution with advanced database architecture and role-based access control.</p>
-                            <ul class="project-features">
-                                <li>Designed normalized database with 15+ tables</li>
-                                <li>Implemented complex stored procedures and triggers</li>
-                                <li>Role-based access control (RBAC) system</li>
-                                <li>Performance optimized queries with indexing strategy</li>
-                                <li>Real-time reporting with dashboard integration</li>
-                            </ul>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Enterprise Task Management System</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">SQL Server</span>
+                            <span class="tech-tag">ASP.NET</span>
+                            <span class="tech-tag">C#</span>
                         </div>
                     </div>
-
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>Hotel Booking & Management System</h3>
-                            <div>
-                                <span class="project-tech">SQL Server</span>
-                                <span class="project-tech">WPF</span>
-                                <span class="project-tech">Entity Framework</span>
-                            </div>
-                        </div>
-                        <div class="project-body">
-                            <p>Full-featured hotel management system with booking engine and inventory management.</p>
-                            <ul class="project-features">
-                                <li>Complex database schema with booking algorithms</li>
-                                <li>Advanced SQL queries for availability checking</li>
-                                <li>Transaction management for concurrent bookings</li>
-                                <li>Data analytics for occupancy reporting</li>
-                                <li>Integration with payment processing systems</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>Inventory Management & Analytics</h3>
-                            <div>
-                                <span class="project-tech">SQL Server</span>
-                                <span class="project-tech">Power BI</span>
-                                <span class="project-tech">SSIS</span>
-                            </div>
-                        </div>
-                        <div class="project-body">
-                            <p>Data-driven inventory system with predictive analytics and automated reporting.</p>
-                            <ul class="project-features">
-                                <li>ETL processes for data integration</li>
-                                <li>Automated stock level monitoring</li>
-                                <li>Predictive analytics for demand forecasting</li>
-                                <li>Interactive Power BI dashboards</li>
-                                <li>Scheduled reporting and alerts</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>Customer Data Warehouse</h3>
-                            <div>
-                                <span class="project-tech">SQL Server</span>
-                                <span class="project-tech">SSAS</span>
-                                <span class="project-tech">T-SQL</span>
-                            </div>
-                        </div>
-                        <div class="project-body">
-                            <p>Enterprise data warehouse solution for customer analytics and business intelligence.</p>
-                            <ul class="project-features">
-                                <li>Star schema design for analytical queries</li>
-                                <li>ETL pipeline for multi-source data integration</li>
-                                <li>Dimensional modeling and fact tables</li>
-                                <li>OLAP cubes for fast analytical processing</li>
-                                <li>Data quality monitoring and validation</li>
-                            </ul>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Comprehensive task management solution with advanced database architecture and role-based access control.
+                        </p>
+                        <ul class="project-features">
+                            <li>Normalized database design with 15+ interconnected tables</li>
+                            <li>Complex stored procedures with transaction management</li>
+                            <li>Role-based access control (RBAC) implementation</li>
+                            <li>Performance-optimized queries with strategic indexing</li>
+                            <li>Real-time dashboard with analytical reporting</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i>
+                                GitHub
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Demo
+                            </a>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            <!-- Experience Section -->
-            <section id="experience" class="section">
-                <h2>Professional Experience</h2>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Hotel Booking & Management System</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">SQL Server</span>
+                            <span class="tech-tag">WPF</span>
+                            <span class="tech-tag">Entity Framework</span>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Full-featured hotel management system with sophisticated booking engine and inventory management.
+                        </p>
+                        <ul class="project-features">
+                            <li>Complex database schema with booking algorithms</li>
+                            <li>Advanced SQL queries for real-time availability</li>
+                            <li>Concurrent booking transaction management</li>
+                            <li>Occupancy analytics and revenue reporting</li>
+                            <li>Payment gateway integration</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i>
+                                GitHub
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-database"></i>
+                                Database Schema
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Data Warehouse & Analytics Platform</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">SQL Server</span>
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">SSIS</span>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Enterprise data warehouse solution with predictive analytics and automated reporting systems.
+                        </p>
+                        <ul class="project-features">
+                            <li>Star schema design for analytical workloads</li>
+                            <li>ETL pipelines for multi-source data integration</li>
+                            <li>Dimensional modeling with fact and dimension tables</li>
+                            <li>Interactive Power BI dashboards</li>
+                            <li>Automated scheduling and alert systems</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-chart-bar"></i>
+                                Dashboard
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-file-alt"></i>
+                                Documentation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Inventory Management System</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">SQL Server</span>
+                            <span class="tech-tag">ASP.NET Core</span>
+                            <span class="tech-tag">Azure</span>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Cloud-based inventory management with real-time tracking and predictive analytics.
+                        </p>
+                        <ul class="project-features">
+                            <li>Real-time inventory tracking and alerts</li>
+                            <li>Predictive analytics for demand forecasting</li>
+                            <li>Automated reorder point calculations</li>
+                            <li>Multi-warehouse management capabilities</li>
+                            <li>RESTful API for third-party integrations</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i>
+                                GitHub
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-cloud"></i>
+                                Azure Deploy
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section experience">
+        <div class="section-content">
+            <div class="section-header">
+                <h2 class="section-title">Professional Journey</h2>
                 <p class="section-subtitle">Career progression from .NET development to database specialization</p>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>.NET Developer</h3>
-                            <h4>TechCorp Solutions</h4>
-                            <p><strong>2021 - 2024</strong></p>
-                            <p>Developed enterprise applications using ASP.NET and SQL Server. Specialized in database optimization and complex query development. Led database design initiatives and performance tuning projects.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Junior Software Developer</h3>
-                            <h4>InnovaTech Systems</h4>
-                            <p><strong>2020 - 2021</strong></p>
-                            <p>Built web applications using .NET Framework and worked extensively with SQL databases. Gained experience in database design, stored procedures, and application integration.</p>
-                        </div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021 - 2024</div>
+                        <h3 class="timeline-title">.NET Developer</h3>
+                        <div class="timeline-company">TechCorp Solutions</div>
+                        <p class="timeline-description">
+                            Developed enterprise applications using ASP.NET and SQL Server. Specialized in database optimization 
+                            and complex query development. Led database design initiatives and performance tuning projects, 
+                            improving system performance by 40% through strategic indexing and query optimization.
+                        </p>
                     </div>
                 </div>
-            </section>
-
-            <!-- Certifications Section -->
-            <section id="certifications" class="section">
-                <h2>Certifications & Achievements</h2>
-                <p class="section-subtitle">Validated expertise in database technologies and development</p>
-                <div class="cert-grid">
-                    <div class="cert-card">
-                        <h3>Microsoft SQL Server Certification</h3>
-                        <p>Database development and administration</p>
-                        <span class="cert-year">2023</span>
-                    </div>
-                    <div class="cert-card">
-                        <h3>Oracle SQL/PL-SQL Specialist</h3>
-                        <p>Advanced SQL programming and database design</p>
-                        <span class="cert-year">2024</span>
-                    </div>
-                    <div class="cert-card">
-                        <h3>Power BI Data Analytics</h3>
-                        <p>Business intelligence and data visualization</p>
-                        <span class="cert-year">2024</span>
-                    </div>
-                    <div class="cert-card">
-                        <h3>Microsoft .NET Framework</h3>
-                        <p>Application development and database integration</p>
-                        <span class="cert-year">2022</span>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2020 - 2021</div>
+                        <h3 class="timeline-title">Junior Software Developer</h3>
+                        <div class="timeline-company">InnovaTech Systems</div>
+                        <p class="timeline-description">
+                            Built web applications using .NET Framework and worked extensively with SQL databases. 
+                            Gained hands-on experience in database design, stored procedures, and application integration. 
+                            Collaborated with senior developers on large-scale projects serving 10,000+ users.
+                        </p>
                     </div>
                 </div>
-            </section>
+            </div>
+        </div>
+    </section>
 
-            <!-- Contact Section -->
-            <section id="contact" class="section">
-                <h2>Get In Touch</h2>
-                <p class="section-subtitle">Let's discuss database opportunities and collaborations</p>
+    <!-- Certifications Section -->
+    <section id="certifications" class="section certifications">
+        <div class="section-content">
+            <div class="section-header">
+                <h2 class="section-title">Certifications & Achievements</h2>
+                <p class="section-subtitle">Validated expertise in database technologies and development frameworks</p>
+            </div>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <h3 class="cert-title">Microsoft SQL Server Certification</h3>
+                    <p class="cert-issuer">Microsoft Corporation</p>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Database development, administration, and performance optimization</p>
+                    <span class="cert-date">2023</span>
+                </div>
+                <div class="cert-card">
+                    <h3 class="cert-title">Oracle SQL/PL-SQL Specialist</h3>
+                    <p class="cert-issuer">Oracle Corporation</p>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Advanced SQL programming and database design principles</p>
+                    <span class="cert-date">2024</span>
+                </div>
+                <div class="cert-card">
+                    <h3 class="cert-title">Power BI Data Analytics</h3>
+                    <p class="cert-issuer">Microsoft Corporation</p>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Business intelligence, data visualization, and analytics</p>
+                    <span class="cert-date">2024</span>
+                </div>
+                <div class="cert-card">
+                    <h3 class="cert-title">Microsoft .NET Framework</h3>
+                    <p class="cert-issuer">Microsoft Corporation</p>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Application development and database integration</p>
+                    <span class="cert-date">2022</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="section-content">
+            <div class="section-header">
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">Ready to discuss database opportunities and innovative solutions</p>
+            </div>
+            <div class="contact-content">
                 <div class="contact-grid">
                     <div class="contact-card">
-                        <i class="fas fa-envelope"></i>
-                        <h3>Email</h3>
-                        <a href="mailto:tejas.kshirsagar@example.com">tejas.kshirsagar@example.com</a>
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-label">Email</div>
+                        <div class="contact-info">
+                            <a href="mailto:tejas.kshirsagar@example.com">tejas.kshirsagar@example.com</a>
+                        </div>
                     </div>
                     <div class="contact-card">
-                        <i class="fab fa-linkedin"></i>
-                        <h3>LinkedIn</h3>
-                        <a href="https://www.linkedin.com/in/tejas-kshirsagar" target="_blank">linkedin.com/in/tejas-kshirsagar</a>
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="contact-label">LinkedIn</div>
+                        <div class="contact-info">
+                            <a href="https://linkedin.com/in/tejas-kshirsagar" target="_blank">linkedin.com/in/tejas-kshirsagar</a>
+                        </div>
                     </div>
                     <div class="contact-card">
-                        <i class="fab fa-github"></i>
-                        <h3>GitHub</h3>
-                        <a href="https://github.com/tejaskshirsagar" target="_blank">github.com/tejaskshirsagar</a>
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="contact-label">GitHub</div>
+                        <div class="contact-info">
+                            <a href="https://github.com/tejaskshirsagar" target="_blank">github.com/tejaskshirsagar</a>
+                        </div>
                     </div>
                     <div class="contact-card">
-                        <i class="fas fa-phone"></i>
-                        <h3>Phone</h3>
-                        <a href="tel:+919876543210">+91 98765 43210</a>
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-label">Phone</div>
+                        <div class="contact-info">
+                            <a href="tel:+919876543210">+91 98765 43210</a>
+                        </div>
                     </div>
                 </div>
-            </section>
+                <div style="margin-top: 3rem;">
+                    <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1.5rem;">
+                        Open to opportunities in SQL Development, Database Administration, and Data Engineering roles.
+                    </p>
+                    <a href="mailto:tejas.kshirsagar@example.com" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 30px;">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </a>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2024 Tejas Kshirsagar. All rights reserved. | Crafted with passion for database excellence</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Tejas Kshirsagar. Crafted with <i class="fas fa-heart" style="color: var(--accent-color);"></i> for database excellence.</p>
     </footer>
 
     <script>
@@ -771,7 +1290,7 @@
         // Active navigation highlighting
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-links a');
+            const navLinks = document.querySelectorAll('.nav-menu a');
             
             let current = '';
             sections.forEach(section => {
@@ -789,10 +1308,19 @@
             });
         });
 
-        // Mobile menu functionality (basic setup)
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
         });
     </script>
 </body>
