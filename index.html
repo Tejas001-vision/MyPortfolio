@@ -66,6 +66,11 @@
 
         /* Hero Section */
         .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             padding: 120px 2rem 80px;
             text-align: center;
             color: white;
@@ -137,19 +142,23 @@
         .main-content {
             background: white;
             border-radius: 20px 20px 0 0;
-            margin-top: -20px;
             position: relative;
             z-index: 10;
+            margin-top: 0;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 8rem 2rem 6rem;
         }
 
         .section {
-            margin-bottom: 4rem;
+            margin-bottom: 6rem;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .section h2 {
@@ -388,6 +397,8 @@
         .page-section {
             min-height: 100vh;
             padding-top: 80px;
+            display: flex;
+            align-items: center;
         }
 
         /* Experience Timeline */
