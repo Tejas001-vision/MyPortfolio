@@ -1,56 +1,772 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tejas Kshirsagar - SQL Developer & Database Specialist</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 2rem 80px;
+            text-align: center;
+            color: white;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .tagline {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #2c3e50;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #2c3e50;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            border-radius: 20px 20px 0 0;
+            margin-top: -20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .skill-card i {
+            font-size: 3rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .project-header h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tech {
+            background: rgba(255,255,255,0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin: 0.2rem;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-features {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .project-features li {
+            padding: 0.3rem 0;
+            color: #555;
+        }
+
+        .project-features li:before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .cert-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 5px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+
+        .cert-card:hover {
+            transform: translateX(5px);
+        }
+
+        .cert-card h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-year {
+            background: #3498db;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #3498db;
+        }
+
+        .contact-card:hover i {
+            color: white;
+        }
+
+        .contact-card a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #2c3e50;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Page Sections */
+        .page-section {
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: #3498db;
+        }
+
+        .timeline-item {
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 45%;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #3498db;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #3498db;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item::before {
+                left: 20px;
+                transform: translateX(-50%);
+            }
+
+            .timeline-content {
+                width: calc(100% - 50px);
+                margin-left: 50px !important;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Tejas Kshirsagar</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
         <h1>Tejas Kshirsagar</h1>
-        <p class="tagline">SQL Developer | Database Enthusiast | Backend Programmer</p>
-    </header>
-
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-            I am passionate about SQL Server, database performance tuning,
-            backend development, and building scalable data-driven solutions.
+        <p class="tagline">SQL Developer | Database Specialist | .NET Professional</p>
+        <p class="hero-description">
+            Passionate about database optimization, SQL Server development, and building scalable data-driven solutions. 
+            Transitioning from .NET development to specialized database roles with expertise in performance tuning and complex query optimization.
         </p>
+        <div class="cta-buttons">
+            <a href="#projects" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        </div>
     </section>
 
-    <section id="certifications">
-        <h2>Certifications</h2>
-        <ul>
-            <li>Microsoft SQL Server Certification – 2023</li>
-            <li>Oracle SQL/PL-SQL Specialist – 2024</li>
-            <li>Power BI Data Analytics – 2024</li>
-        </ul>
-    </section>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- About Section -->
+            <section id="about" class="section">
+                <h2>About Me</h2>
+                <p class="section-subtitle">Dedicated database professional with a passion for data excellence</p>
+                <div style="max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.1rem; line-height: 1.8;">
+                    <p>
+                        With a strong foundation in .NET development and a growing expertise in database technologies, 
+                        I specialize in SQL Server performance optimization, complex query design, and database architecture. 
+                        My experience spans from application development to database administration, giving me a unique 
+                        perspective on how to build efficient, scalable data solutions.
+                    </p>
+                    <br>
+                    <p>
+                        I'm currently seeking opportunities in SQL development and database administration roles where 
+                        I can leverage my technical skills and passion for data to drive business success through 
+                        optimized database solutions.
+                    </p>
+                </div>
+            </section>
 
-    <section id="projects">
-        <h2>Database Projects</h2>
-        <ul>
-            <li>
-                <strong>Task Management System (Web Forms + SQL Server)</strong><br/>
-                Stored Procedures, Functions, Triggers, ERD design, RBAC implementation
-            </li>
-            <li>
-                <strong>Hotel Booking System (WPF + SQL Server)</strong><br/>
-                Designed normalized DB & implemented complex queries
-            </li>
-        </ul>
-    </section>
+            <!-- Skills Section -->
+            <section id="skills" class="section">
+                <h2>Technical Skills</h2>
+                <p class="section-subtitle">Comprehensive expertise across database and development technologies</p>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i class="fas fa-database"></i>
+                        <h3>Database Technologies</h3>
+                        <p>SQL Server, MySQL, Oracle, PostgreSQL, Database Design, Normalization, ERD</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-code"></i>
+                        <h3>SQL Expertise</h3>
+                        <p>Complex Queries, Stored Procedures, Functions, Triggers, Views, CTEs, Window Functions</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <h3>Performance Optimization</h3>
+                        <p>Query Tuning, Index Optimization, Execution Plans, Performance Monitoring</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-chart-bar"></i>
+                        <h3>Business Intelligence</h3>
+                        <p>Power BI, SSRS, SSIS, Data Analysis, ETL Processes, Data Warehousing</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>.NET Development</h3>
+                        <p>C#, ASP.NET, Web Forms, WPF, Entity Framework, ADO.NET</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-tools"></i>
+                        <h3>Tools & Platforms</h3>
+                        <p>SSMS, Visual Studio, Git, Azure, AWS RDS, MongoDB, Redis</p>
+                    </div>
+                </div>
+            </section>
 
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:yourmail@example.com">yourmail@example.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/YOURPROFILE">linkedin.com/in/YOURPROFILE</a></p>
-    </section>
+            <!-- Projects Section -->
+            <section id="projects" class="section">
+                <h2>Database Projects</h2>
+                <p class="section-subtitle">Real-world applications showcasing database expertise and development skills</p>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Enterprise Task Management System</h3>
+                            <div>
+                                <span class="project-tech">SQL Server</span>
+                                <span class="project-tech">ASP.NET</span>
+                                <span class="project-tech">C#</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <p>Comprehensive task management solution with advanced database architecture and role-based access control.</p>
+                            <ul class="project-features">
+                                <li>Designed normalized database with 15+ tables</li>
+                                <li>Implemented complex stored procedures and triggers</li>
+                                <li>Role-based access control (RBAC) system</li>
+                                <li>Performance optimized queries with indexing strategy</li>
+                                <li>Real-time reporting with dashboard integration</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Hotel Booking & Management System</h3>
+                            <div>
+                                <span class="project-tech">SQL Server</span>
+                                <span class="project-tech">WPF</span>
+                                <span class="project-tech">Entity Framework</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <p>Full-featured hotel management system with booking engine and inventory management.</p>
+                            <ul class="project-features">
+                                <li>Complex database schema with booking algorithms</li>
+                                <li>Advanced SQL queries for availability checking</li>
+                                <li>Transaction management for concurrent bookings</li>
+                                <li>Data analytics for occupancy reporting</li>
+                                <li>Integration with payment processing systems</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Inventory Management & Analytics</h3>
+                            <div>
+                                <span class="project-tech">SQL Server</span>
+                                <span class="project-tech">Power BI</span>
+                                <span class="project-tech">SSIS</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <p>Data-driven inventory system with predictive analytics and automated reporting.</p>
+                            <ul class="project-features">
+                                <li>ETL processes for data integration</li>
+                                <li>Automated stock level monitoring</li>
+                                <li>Predictive analytics for demand forecasting</li>
+                                <li>Interactive Power BI dashboards</li>
+                                <li>Scheduled reporting and alerts</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Customer Data Warehouse</h3>
+                            <div>
+                                <span class="project-tech">SQL Server</span>
+                                <span class="project-tech">SSAS</span>
+                                <span class="project-tech">T-SQL</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <p>Enterprise data warehouse solution for customer analytics and business intelligence.</p>
+                            <ul class="project-features">
+                                <li>Star schema design for analytical queries</li>
+                                <li>ETL pipeline for multi-source data integration</li>
+                                <li>Dimensional modeling and fact tables</li>
+                                <li>OLAP cubes for fast analytical processing</li>
+                                <li>Data quality monitoring and validation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="section">
+                <h2>Professional Experience</h2>
+                <p class="section-subtitle">Career progression from .NET development to database specialization</p>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>.NET Developer</h3>
+                            <h4>TechCorp Solutions</h4>
+                            <p><strong>2021 - 2024</strong></p>
+                            <p>Developed enterprise applications using ASP.NET and SQL Server. Specialized in database optimization and complex query development. Led database design initiatives and performance tuning projects.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Junior Software Developer</h3>
+                            <h4>InnovaTech Systems</h4>
+                            <p><strong>2020 - 2021</strong></p>
+                            <p>Built web applications using .NET Framework and worked extensively with SQL databases. Gained experience in database design, stored procedures, and application integration.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Certifications Section -->
+            <section id="certifications" class="section">
+                <h2>Certifications & Achievements</h2>
+                <p class="section-subtitle">Validated expertise in database technologies and development</p>
+                <div class="cert-grid">
+                    <div class="cert-card">
+                        <h3>Microsoft SQL Server Certification</h3>
+                        <p>Database development and administration</p>
+                        <span class="cert-year">2023</span>
+                    </div>
+                    <div class="cert-card">
+                        <h3>Oracle SQL/PL-SQL Specialist</h3>
+                        <p>Advanced SQL programming and database design</p>
+                        <span class="cert-year">2024</span>
+                    </div>
+                    <div class="cert-card">
+                        <h3>Power BI Data Analytics</h3>
+                        <p>Business intelligence and data visualization</p>
+                        <span class="cert-year">2024</span>
+                    </div>
+                    <div class="cert-card">
+                        <h3>Microsoft .NET Framework</h3>
+                        <p>Application development and database integration</p>
+                        <span class="cert-year">2022</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <h2>Get In Touch</h2>
+                <p class="section-subtitle">Let's discuss database opportunities and collaborations</p>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <a href="mailto:tejas.kshirsagar@example.com">tejas.kshirsagar@example.com</a>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fab fa-linkedin"></i>
+                        <h3>LinkedIn</h3>
+                        <a href="https://www.linkedin.com/in/tejas-kshirsagar" target="_blank">linkedin.com/in/tejas-kshirsagar</a>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fab fa-github"></i>
+                        <h3>GitHub</h3>
+                        <a href="https://github.com/tejaskshirsagar" target="_blank">github.com/tejaskshirsagar</a>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-phone"></i>
+                        <h3>Phone</h3>
+                        <a href="tel:+919876543210">+91 98765 43210</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 
     <footer>
-        © 2024 Tejas Kshirsagar. All rights reserved.
+        <p>&copy; 2024 Tejas Kshirsagar. All rights reserved. | Crafted with passion for database excellence</p>
     </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Mobile menu functionality (basic setup)
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
 </body>
 </html>
